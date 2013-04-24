@@ -1,7 +1,7 @@
 For this Cython improvement of binary_search_tree.py, I've modified the program so that the input is hard-coded to have 100 keys of equal weight (0.01) for convenience. The rest of the algorithm has been left unchanged, and the pure-Python version can be tested by running  
 
 ```
-$ python binarch_search_tree_original.py  
+$ python binary_search_tree_original.py  
 5.8  
 time: 1.34639596939 seconds
 ```
