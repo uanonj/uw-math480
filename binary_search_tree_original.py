@@ -55,16 +55,12 @@ def solve_binary_tree(p, n):
 
 def main():
     start_time = time.time()
-    n = len(sys.argv) - 1
-    if n < 1:
-        print "Usage: python binary_search_trees.py [binary tree weights]"
-        return None
-    else:
-        p = list()
-        for i in range(1, n+1):
-            p.append(float(sys.argv[i]))
-        solve_binary_tree(p, n)
-        print "time:", time.time() - start_time, "seconds"
+    n = 100
+    p = list()
+    for i in range(n):
+        p.append(0.01)
+    solve_binary_tree(p, n)
+    print "time:", time.time() - start_time, "seconds"
 
 if __name__ == '__main__':
     main()

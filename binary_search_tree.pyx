@@ -48,7 +48,7 @@ cdef void solve_binary_tree(double *p, int n):
     cdef double m, ssum
     cdef int i, s, j, r
     A = <double **>malloc((n+1)*sizeof(double *))
-    for i from 0 <= i < n:
+    for i from 0 <= i <= n:
         A[i] = <double *>malloc((n+1)*sizeof(double))
     for s from 1 <= s <= n: # 1 ... n: All sizes of sequences
         for i from 1 <= i <= n-s+1: # 1 ... n-s+1: All starting points of sequences
@@ -59,24 +59,21 @@ cdef void solve_binary_tree(double *p, int n):
             ssum = subset_sum(p, i, j)
             A[i][j] = m + ssum
     print A[1][n]
-    for i from 0 <= i < n:
+    for i from 0 <= i <= n:
         free(A[i])
     free(A)
 
-cdef void main():
+def main():
     start_time = time.time()
     cdef int n, i
     cdef double *p
-    n = len(sys.argv) - 1
-    if n < 1:
-        print "Usage: python binary_search_trees.py [binary tree weights]"
-    else:
-        p = <double *>malloc(n*sizeof(double))
-        for i from 0 <= i < n:
-            p[i] = float(sys.argv[i+1])
-        solve_binary_tree(p, n)
-        free(p)
-        print "time:", time.time() - start_time, "seconds"
+    n = 100
+    p = <double *>malloc(n*sizeof(double))
+    for i from 0 <= i < n:
+        p[i] = 0.01
+    solve_binary_tree(p, n)
+    free(p)
+    print "time:", time.time() - start_time, "seconds"
 
 if __name__ == '__main__':
     main()

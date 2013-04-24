@@ -1,25 +1,20 @@
-binary_search_tree.py  
-Jason Uanon  
+For this Cython improvement of binary_search_tree.py, I've modified the program so that the input is hard-coded to have 100 keys of equal weight (0.01) for convenience. The rest of the algorithm has been left unchanged, and the pure-Python version can be tested by running  
 
-This program computes the minimum average search time  
-of a binary search tree with given key frequencies.  
+```
+$ python binarch_search_tree_original.py  
+5.8  
+time: 1.34639596939 seconds
+```
 
-Input:  
-    A set of frequencies p_1, ..., p_n of binary search tree  
-    keys such that:  
-        - p_1 + ... + p_n = 1.0  
-        - p_i corresponds to the frequency of the i'th key  
-          where the keys 1, ..., n are in sorted order  
+The Cython version can be found in binary_search_tree.pyx. A sample execution is as follows:
 
-Output:  
-    The minimum possible average search time of a binary search  
-    tree among all possible configurations with those keys,  
-    defined as:  
-        - (p_1*d_1) + ... + (p_n*d_1)  
-          where d_i is the depth of the i'th node  
+```
+$ python setup.py build_ext --inplace
+$ python
+>>> import binary_search_tree
+>>> binary_search_tree.main()
+5.8
+time: 0.00189709663391 seconds
+```
 
-(See also: Introduction to Algorithms (Cormen et al) pp. 397)  
-
-Examples:  
-    Input: 0.33, 0.20, 0.07, 0.25, 0.15  
-    Output: 2.02  
+On average, the compiled Cython code runs over 650 times faster for 100 binary tree nodes.
