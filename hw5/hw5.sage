@@ -1,0 +1,33 @@
+Mod(389, 5077).rational_reconstruction()
+Mod(17, 10000).rational_reconstruction()
+Mod(123456789, 2345678910).rational_reconstruction()
+Mod(8171666302, 10000000000).rational_reconstruction()
+
+# Results:
+# -20/13
+# 17
+# 81/19
+# 1234/4567
+
+# Problem 2:
+# If p is prime, then for any integer a, a^{p-1} is congruent to 1 mod p.
+# Thus, if a^{n-1} (mod n) is not 1, then n cannot be prime.
+# (although if it is 1, n is not necessarily prime)
+n = 4654252230393111226989449826741007006486078009450861095070222439898324342353927553909251532232407850265642079868425916328810273416481567992145162141358151
+Mod(2, n)^(n-1)
+# Result: 1631275335353718272688521136992205307778996921510751912836784958121590177271097904110560032076219875741821572502979807785676850802289166219856576501165317
+# ==> n is not prime!
+
+m = Integer(int(sqrt(n)))
+while not m.divides(n):
+    print m, "does not divide"
+    m = next_prime(m)
+print "done"
+print m.divides(n)
+f = n / m
+print m
+print f
+print m*f == n
+# Success - the factors of n are:
+#   68222080226222296181917368518534332259513625527062166102114730123514248558499
+#   68222080226222296181917368518534332259513625527062166102114730123514248558349
